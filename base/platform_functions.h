@@ -3,38 +3,29 @@
 
 #include "base/platform_spec.h"
 
-#ifndef MSLEEP
-#	if OS_WIN
-#		define MSLEEP(ms) Sleep(ms)
-#	else // OS_WIN
-#	include <unistd.h>
-#		define MSLEEP(ms) usleep((ms)*1000)
-#	endif
-#endif // MSLEEP
+namespace hlp {
 
-#ifndef CLOSE_SOCKET
-#	if OS_WIN
-#		define CLOSE_SOCKET(fd) closesocket(fd)
-#	else // OS_WIN
-#		define CLOSE_SOCKET(fd) close(fd)
-#	endif
-#endif // CLOSE_SOCKET
+#if OS_WIN
+#	define MsSleep(ms) Sleep(ms)
+#else // OS_WIN
+#	define MsSleep(ms) usleep((ms)*1000)
+#endif
 
-#ifndef LOCALTIME
-#	if OS_WIN
-#		define LOCALTIME(t, r) localtime_s(t, r)
-#	else // OS_WIN
-#		define LOCALTIME(t, r) localtime_r(t, r)
-#	endif
-#endif // LOCALTIME
+#if OS_WIN
+#	define CloseSocket(fd) closesocket(fd)
+#else // OS_WIN
+#	define CloseSocket(fd) close(fd)
+#endif
 
-#ifndef VSNPRINTF
-#	if OS_WIN
-#		define VSNPRINTF _vsnprintf
-#	else // OS_WIN
-#		define VSNPRINTF vsnprintf
-#	endif
-#endif // VSNPRINTF
+#if OS_WIN
+#	define StringPrintf _vsnprintf
+#else // OS_WIN
+#	define StringPrintf vsnprintf
+#endif
+
+}
+
+
 
 #endif // __BASE_PLATFORM_FUNCTIONS_H__
 

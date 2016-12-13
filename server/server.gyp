@@ -17,6 +17,7 @@
       'msvs_guid': 'B88713BB-1726-4A73-9923-9F1DC4D8033F',
       'dependencies': [
         '../base/base.gyp:base',
+		'../log/log.gyp:log',
       ],
       'sources': [
         'server.h',

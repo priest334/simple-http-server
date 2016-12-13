@@ -3,6 +3,8 @@
     'Debug': {
       'defines': [
         'DEBUG',
+		'_DEBUG',
+		'_MBCS',
       ],
       'conditions': [
         ['OS!="win"', {
@@ -17,7 +19,7 @@
             },
             'VCLinkerTool': {
               'IgnoreDefaultLibraryNames': [
-                'libcmt.lib',
+                #'libcmtd.lib',
               ],
             },
           },
@@ -27,6 +29,8 @@
     'Release': {
       'defines': [
         'RELEASE',
+		'NDEBUG',
+		'_MBCS',
       ],
       'conditions': [
         ['OS!="win"', {
@@ -41,7 +45,7 @@
             },
             'VCLinkerTool': {
               'IgnoreDefaultLibraryNames': [
-                'libcmt.lib',
+                #'libcmt.lib',
               ],
             },
           },

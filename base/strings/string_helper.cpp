@@ -11,6 +11,12 @@
 
 namespace hlp {
 	namespace base {
+		namespace {
+			template <typename T>
+			T Round(const T& v, const T& m) {
+				return (v > m) ? m : v;
+			}
+		}
 
 		const std::string String::empty_ = "";
 
@@ -117,30 +123,37 @@ namespace hlp {
 			return !(s2.value_ == s1);
 		}
 
-		String& String::Format(const char* fmt, ...) {
+		String& String::FormatV(const char* fmt, va_list args) {
 			const int max_buf_len = 102400;
 			value_.resize(max_buf_len);
+			int wr = StringPrintf(&value_[0], value_.length(), fmt, args);
+			if (wr > 0)
+				value_.resize(Round(wr, max_buf_len));
+			else
+				value_.resize(0);
+			return *this;
+		}
 
+		String& String::Format(const char* fmt, ...) {
 			va_list args;
 			va_start(args, fmt);
-			int wr = VSNPRINTF(&value_[0], max_buf_len, fmt, args);
+			(*this).FormatV(fmt, args);
 			va_end(args);
+			return *this;
+		}
 
+		String& String::AppendFormatV(const char* fmt, va_list args) {
+			String append;
+			append.FormatV(fmt, args);
+			value_ += append.c_str();
 			return *this;
 		}
 
 		String& String::AppendFormat(const char* fmt, ...) {
-			const int max_buf_len = 102400;
-			size_t size = value_.size();
-			value_.resize(size + max_buf_len);
-
 			va_list args;
 			va_start(args, fmt);
-			int wr = VSNPRINTF(&value_[size], max_buf_len, fmt, args);
+			(*this).AppendFormatV(fmt, args);
 			va_end(args);
-
-			value_.resize(size + wr);
-
 			return *this;
 		}
 
@@ -440,6 +453,9 @@ namespace hlp {
 			return value_.c_str();
 		}
 
+		size_t String::length() const {
+			return value_.length();
+		}
 
 		// StringVector
 		StringVector::StringVector() {

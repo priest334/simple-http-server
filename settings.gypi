@@ -3,6 +3,7 @@
     ['OS=="win"', {
       'defines': [
         'WIN32',
+		'_MBCS',
       ],
       'msvs_settings': {
         'VCCLCompilerTool': {
@@ -13,6 +14,9 @@
           'LinkIncremental': '1',
           'LinkLibraryDependencies': 'true',
           'SubSystem': '1',
+		  'AdditionalDependencies': [
+			'%(AdditionalDependencies)',
+		  ],
         },
       },
 	  'msvs_disabled_warnings': [

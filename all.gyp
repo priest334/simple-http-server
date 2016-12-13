@@ -14,6 +14,8 @@
       ],
       'dependencies': [
         'server/server.gyp:*',
+		'net/net.gyp:*',
+		'log/log.gyp:*',
       ],
     },
   ],

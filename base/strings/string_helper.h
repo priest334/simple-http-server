@@ -20,8 +20,8 @@ namespace hlp {
 			static const std::string empty_;
 
 			String();
-			explicit String(const char* s);
-			explicit String(const std::string& s);
+			String(const char* s);
+			String(const std::string& s);
 			~String();
 
 			String(const String& s);
@@ -50,7 +50,9 @@ namespace hlp {
 			friend bool operator!=(const std::string& s1, const String& s2);
 
 		public:
+			String& FormatV(const char* fmt, va_list args);
 			String& Format(const char* fmt, ...);
+			String& AppendFormatV(const char* fmt, va_list args);
 			String& AppendFormat(const char* fmt, ...);
 			String& Append(const char* s);
 			String& Append(const std::string& s);
@@ -85,6 +87,7 @@ namespace hlp {
 
 			const std::string& str() const;
 			const char* c_str() const;
+			size_t length() const;
 			
 		private:
 			std::string value_;
