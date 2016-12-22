@@ -15,11 +15,12 @@
         ['OS=="win"', {
           'msvs_settings': {
             'VCCLCompilerTool': {
+			  'Optimization': '0',
               'RuntimeLibrary': '1',
             },
             'VCLinkerTool': {
               'IgnoreDefaultLibraryNames': [
-                #'libcmtd.lib',
+                'libcmt.lib',
               ],
             },
           },

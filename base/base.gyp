@@ -29,6 +29,8 @@
 				'singleton.h',
 				'files/file_path.cpp',
 				'files/file_path.h',
+				'files/file_utils.cpp',
+				'files/file_utils.h',
 				'strings/string_convert.cpp',
 				'strings/string_convert.h',
 				'strings/string_helper.cpp',

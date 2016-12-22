@@ -11,7 +11,8 @@ namespace hlp {
 			friend class Service;
 			friend class Logging;
 		private:
-			FileWriter(const char* name, size_t max_size = 1024*1024*256);
+			void OpenFile();
+			FileWriter(const char* name, size_t max_size = 1024*1024);
 			~FileWriter();
 
 			void Send(Severity severity, time_t timestamp, const char* message, size_t length);
@@ -21,6 +22,7 @@ namespace hlp {
 			std::string name_;
 			size_t max_size_;
 			size_t total_size_;
+			int backup_index_;
 		};
 	} // namespace log
 } // namespace hlp
