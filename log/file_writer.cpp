@@ -1,7 +1,12 @@
 #include "log/file_writer.h"
+#include "base/platform_spec.h"
 
 #include <stdio.h>
+#ifdef OS_WIN
 #include <io.h>
+#else
+#include <unistd.h>
+#endif
 #include <sstream>
 #include "base/time/time.h"
 #include "base/strings/string_helper.h"
