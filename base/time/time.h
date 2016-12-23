@@ -11,6 +11,7 @@
 #include <time.h>
 #	define LocalTime(t, r) localtime_s(t, r)
 #else // OS_WIN
+typedef unsigned long DWORD;
 #include <sys/time.h>
 #	define LocalTime(t, r) localtime_r(r, t)
 #endif
@@ -28,6 +29,8 @@ namespace hlp {
 		public:
 			static Time Now();
 			static int GetTimeOfDay(struct timeval* tv, void* tz);
+			static DWORD GetTickCount();
+			static void Sleep(int ms);
 
 			std::string Format(const char* fmt);
 			std::string ToString();

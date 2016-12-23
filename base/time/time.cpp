@@ -5,6 +5,8 @@
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <WinSock2.h>
+#else
+#include <unistd.h>
 #endif
 
 namespace hlp {
@@ -33,6 +35,19 @@ namespace hlp {
 #else
 			return gettimeofday(tv, (struct timezone*)tz);
 #endif
+		}
+
+		DWORD Time::GetTickCount() {
+#ifdef OS_WIN
+			return ::GetTickCount();
+#else
+			struct timespec ts;
+			clock_gettime(CLOCK_MONOTONIC, &ts);
+			return ts.tv_sec * 1000 + ts.tv_usec / 1000000;
+#endif
+		}
+
+		void Time::Sleep(int ms) {
 		}
 
 		Time::Time()
