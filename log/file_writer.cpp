@@ -49,7 +49,7 @@ namespace hlp {
 			if (!file_.bad()) {
 				base::Time t(timestamp);
 				std::ostringstream oss;
-				oss << "[" << t.ToString() << "] ";
+				oss << SeverityPrefix[severity] << t.ToString() << " ";
 				oss.write(message, length);
 				oss << std::endl;
 				const std::string& line = oss.str();

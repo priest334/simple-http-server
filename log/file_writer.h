@@ -12,7 +12,7 @@ namespace hlp {
 			friend class Logging;
 		private:
 			void OpenFile();
-			FileWriter(const char* name, size_t max_size = 1024*1024);
+			FileWriter(const char* name, size_t max_size = 1024*1024*256);
 			~FileWriter();
 
 			void Send(Severity severity, time_t timestamp, const char* message, size_t length);

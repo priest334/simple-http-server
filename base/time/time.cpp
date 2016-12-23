@@ -57,7 +57,7 @@ namespace hlp {
 		}
 
 		std::string Time::ToString() {
-			return Format("%Y-%m-%d %H:%M:%S");
+			return Format("%Y-%m-%d.%H:%M:%S");
 		}
 
 		time_t Time::Float() const {

@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 	WSAStartup(0x0201, &wsa_data);
 #endif
 
-	InitLogging("./", false);
+	InitLogging("./", true);
 
 	DWORD dwBegin = GetTickCount(), dwEnd;
 	for (int i = 0; i < 100000; i++) {

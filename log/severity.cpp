@@ -6,6 +6,8 @@ const char* const SeverityNames[NUM_SEVERITIES] = {
 	"INFO", "WARN", "ERROR", "FATAL"
 };
 
+const char SeverityPrefix[] = "IWEF";
+
 inline bool IsValidSeverity(Severity severity) {
 	return (severity >= 0 && severity < NUM_SEVERITIES);
 }
@@ -15,5 +17,4 @@ const char* SeverityName(Severity severity) {
 		return "EXCEPT";
 	return SeverityNames[severity];
 }
-
 
